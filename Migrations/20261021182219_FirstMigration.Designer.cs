@@ -12,8 +12,8 @@ using Uni.Web.API.Database;
 namespace Uni.Web.API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20261020185535_Student_Email_PhoneNumber_Config")]
-    partial class Student_Email_PhoneNumber_Config
+    [Migration("20261021182219_FirstMigration")]
+    partial class FirstMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

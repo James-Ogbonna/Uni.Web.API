@@ -12,8 +12,8 @@ using Uni.Web.API.Database;
 namespace Uni.Web.API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20261020184030_FirstMigration")]
-    partial class FirstMigration
+    [Migration("20261021183448_Student_Email_MaxLength")]
+    partial class Student_Email_MaxLength
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -202,7 +202,8 @@ namespace Uni.Web.API.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("text")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
                         .HasColumnName("email");
 
                     b.Property<string>("FirstName")
@@ -223,7 +224,8 @@ namespace Uni.Web.API.Migrations
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
-                        .HasColumnType("text")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("phone_number");
 
                     b.Property<string>("RegNumber")

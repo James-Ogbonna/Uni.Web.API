@@ -16,7 +16,7 @@ namespace Uni.Web.API.Database.Configurations
             builder.Property(s => s.DateOfBirth).IsRequired();
             builder.Property(s => s.DepartmentId).IsRequired();
             builder.Property(s => s.Level).IsRequired();
-            builder.Property(s => s.Email).IsRequired().HasMaxLength(70);
+            builder.Property(s => s.Email).IsRequired().HasMaxLength(50);
             builder.Property(s => s.PhoneNumber).IsRequired().HasMaxLength(11);
             builder.HasOne<Department>().WithMany().HasForeignKey(s => s.DepartmentId);
 
