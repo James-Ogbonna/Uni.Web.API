@@ -90,6 +90,10 @@
             "Scalar.AspNetCore": {
               "target": "Package",
               "version": "[2.18.0, )"
+            },
+            "Scrutor": {
+              "target": "Package",
+              "version": "[7.0.0, )"
             }
           },
           "imports": [

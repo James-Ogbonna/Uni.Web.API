@@ -13,6 +13,28 @@
     }
   ],
   "paths": {
+    "/api/students": {
+      "post": {
+        "tags": [
+          "Uni.Web.API"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/weatherforecast": {
       "get": {
         "tags": [
@@ -39,6 +61,52 @@
   },
   "components": {
     "schemas": {
+      "Request": {
+        "required": [
+          "regNumber",
+          "firstName",
+          "lastName",
+          "dateOfBirth",
+          "email",
+          "phoneNumber",
+          "departmentId",
+          "level"
+        ],
+        "type": "object",
+        "properties": {
+          "regNumber": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phoneNumber": {
+            "type": "string"
+          },
+          "departmentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "level": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          }
+        }
+      },
       "WeatherForecast": {
         "required": [
           "date",

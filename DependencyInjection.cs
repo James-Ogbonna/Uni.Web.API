@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Uni.Web.API.Common;
+using Uni.Web.API.Common.Messaging;
 using Uni.Web.API.Database;
 
 namespace Uni.Web.API;
@@ -9,6 +10,16 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
+        services.Scan(scan => scan.FromAssembliesOf(typeof(DependencyInjection))
+            .AddClasses(classes => classes.AssignableTo(typeof(IQueryHandler<,>)), publicOnly: false)
+                .AsImplementedInterfaces()
+                .WithScopedLifetime()
+            .AddClasses(classes => classes.AssignableTo(typeof(ICommandHandler<>)), publicOnly: false)
+                .AsImplementedInterfaces()
+                .WithScopedLifetime()
+            .AddClasses(classes => classes.AssignableTo(typeof(ICommandHandler<,>)), publicOnly: false)
+                .AsImplementedInterfaces()
+                .WithScopedLifetime());
 
         return services;
     }
