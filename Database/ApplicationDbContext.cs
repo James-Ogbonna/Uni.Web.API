@@ -1,12 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Uni.Web.API.Features.CourseRegistrations;
-using Uni.Web.API.Features.Courses;
-using Uni.Web.API.Features.DepartmentalCourse;
 using Uni.Web.API.Features.Departments;
 using Uni.Web.API.Features.Schools;
 using Uni.Web.API.Features.Students;
+using Uni.Web.API.Features.CourseRegistrations;
+using Uni.Web.API.Features.Courses;
+using Uni.Web.API.Features.DepartmentalCourse;
 
 namespace Uni.Web.API.Database;
+
 public sealed class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
 : DbContext(options)
 {

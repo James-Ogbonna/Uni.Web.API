@@ -1,0 +1,300 @@
+[
+  {
+    "name": "School of Basic Medical Sciences",
+    "abbr": "SBMS",
+    "departments": [
+      {
+        "name": "Human Anatomy",
+        "abbr": "ANT"
+      },
+      {
+        "name": "Human Physiology",
+        "abbr": "HPH"
+      }
+    ]
+  },
+  {
+    "name": "School of Biological Science",
+    "abbr": "SOBS",
+    "departments": [
+      {
+        "name": "Biotechnology",
+        "abbr": "BTC"
+      },
+      {
+        "name": "Microbiology",
+        "abbr": "MCB"
+      },
+      {
+        "name": "Biology",
+        "abbr": "BIO"
+      },
+      {
+        "name": "Forensic Science",
+        "abbr": "FRS"
+      },
+      {
+        "name": "Biochemistry",
+        "abbr": "BCH"
+      }
+    ]
+  },
+  {
+    "name": "School of Agriculture And Agricultural Technology",
+    "abbr": "SAAT",
+    "departments": [
+      {
+        "name": "Agribusiness",
+        "abbr": "AGR"
+      },
+      {
+        "name": "Agricultural Economics",
+        "abbr": "AEC"
+      },
+      {
+        "name": "Agricultural Extension",
+        "abbr": "AEX"
+      },
+      {
+        "name": "Forestry and Wildlife Technology",
+        "abbr": "FWT"
+      },
+      {
+        "name": "Fisheries and Aquaculture Technology",
+        "abbr": "FAT"
+      },
+      {
+        "name": "Animal Science Technology",
+        "abbr": "AST"
+      },
+      {
+        "name": "Soil Science And Technology",
+        "abbr": "SST"
+      },
+      {
+        "name": "Crop Science and Technology",
+        "abbr": "CS"
+      }
+    ]
+  },
+  {
+    "name": "School of Electrical Systems and Engineering Technology",
+    "abbr": "SESET",
+    "departments": [
+      {
+        "name": "Mechatronics Engineering",
+        "abbr": "MCE"
+      },
+      {
+        "name": "Computer Engineering",
+        "abbr": "CPE"
+      },
+      {
+        "name": "Electronics Engineering",
+        "abbr": "ELE"
+      },
+      {
+        "name": "Telecommunications Engineering",
+        "abbr": "TCE"
+      },
+      {
+        "name": "Electrical (Power Systems) Engineering",
+        "abbr": "EPE"
+      }
+    ]
+  },
+  {
+    "name": "School of Postgraduate Studies",
+    "abbr": "SPGS",
+    "departments": [
+      {
+        "name": "PG School",
+        "abbr": "PGS"
+      }
+    ]
+  },
+  {
+    "name": "School of Physical Science",
+    "abbr": "SOPS",
+    "departments": [
+      {
+        "name": "Mathematics",
+        "abbr": "MTH"
+      },
+      {
+        "name": "Statistics",
+        "abbr": "STA"
+      },
+      {
+        "name": "Science Laboratory Technology",
+        "abbr": "SLT"
+      },
+      {
+        "name": "Chemistry",
+        "abbr": "CHM"
+      },
+      {
+        "name": "Physics",
+        "abbr": "PHY"
+      }
+    ]
+  },
+  {
+    "name": "School of Environmental Sciences",
+    "abbr": "SOES",
+    "departments": [
+      {
+        "name": "Architecture",
+        "abbr": "ARC"
+      },
+      {
+        "name": "Building Technology",
+        "abbr": "BLD"
+      },
+      {
+        "name": "Environmental Management",
+        "abbr": "EVM"
+      },
+      {
+        "name": "Quantity Surveying",
+        "abbr": "QTS"
+      },
+      {
+        "name": "Surveying and Geoinformatics",
+        "abbr": "SVG"
+      },
+      {
+        "name": "Urban and Regional Planning",
+        "abbr": "URP"
+      },
+      {
+        "name": "Estate Management and Evaluation",
+        "abbr": "EME"
+      }
+    ]
+  },
+  {
+    "name": "School of Health Technology",
+    "abbr": "SOHT",
+    "departments": [
+      {
+        "name": "Prosthetics and Orthotics",
+        "abbr": "POT"
+      },
+      {
+        "name": "Environmental Health Science",
+        "abbr": "EHS"
+      },
+      {
+        "name": "Optometry",
+        "abbr": "OPT"
+      },
+      {
+        "name": "Public Health Technology",
+        "abbr": "PUH"
+      },
+      {
+        "name": "Dental Technology",
+        "abbr": "DNT"
+      },
+      {
+        "name": "Radiography",
+        "abbr": "RAD"
+      }
+    ]
+  },
+  {
+    "name": "School of Engineering and Engineering Technology",
+    "abbr": "SEET",
+    "departments": [
+      {
+        "name": "Mechanical Engineering",
+        "abbr": "MEE"
+      },
+      {
+        "name": "Polymer and Textile Engineering",
+        "abbr": "PTE"
+      },
+      {
+        "name": "Petroleum Engineering",
+        "abbr": "PET"
+      },
+      {
+        "name": "Food Science And Technology",
+        "abbr": "FST"
+      },
+      {
+        "name": "Biomedical Engineering",
+        "abbr": "BME"
+      },
+      {
+        "name": "Material and Metallurgical Engineering",
+        "abbr": "MME"
+      },
+      {
+        "name": "Agricultural and Bioresources Engineering",
+        "abbr": "ABE"
+      },
+      {
+        "name": "Civil Engineering",
+        "abbr": "CIE"
+      },
+      {
+        "name": "Chemical Engineering",
+        "abbr": "CHE"
+      }
+    ]
+  },
+  {
+    "name": "School of Logistics and Innovation Technology",
+    "abbr": "SLIT",
+    "departments": [
+      {
+        "name": "Maritime Technology and Logistics",
+        "abbr": "MTL"
+      },
+      {
+        "name": "Logistics and Transport Technology",
+        "abbr": "LTT"
+      },
+      {
+        "name": "Estate Management and Valuation",
+        "abbr": "EMV"
+      },
+      {
+        "name": "Entrepreneurship and Innovation",
+        "abbr": "ENI"
+      },
+      {
+        "name": "Logistics and Supply Chain Management",
+        "abbr": "LSCM"
+      },
+      {
+        "name": "Project Management Technology",
+        "abbr": "PMT"
+      }
+    ]
+  },
+  {
+    "name": "School of Information and Communication Technology",
+    "abbr": "SICT",
+    "departments": [
+      {
+        "name": "Software Engineering",
+        "abbr": "SOE"
+      },
+      {
+        "name": "Computer Science",
+        "abbr": "CSC"
+      },
+      {
+        "name": "Cyber Security",
+        "abbr": "CYB"
+      },
+      {
+        "name": "Information Technology",
+        "abbr": "IFT"
+      }
+    ]
+  }
+]

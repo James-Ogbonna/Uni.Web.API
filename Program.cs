@@ -2,10 +2,13 @@ using Scalar.AspNetCore;
 using System.Reflection;
 using Uni.Web.API;
 using Uni.Web.API.Common.Endpoints;
+using Uni.Web.API.Common.Extensions;
+using Web.Api.Common.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
+//builder.Services.AddSwaggerGen();
 
 builder.Services
     .AddApplication()
@@ -14,7 +17,7 @@ builder.Services
 
 builder.Services.AddEndpoints(Assembly.GetExecutingAssembly());
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 app.MapEndpoints(); // Map all endpoints from the assembly
 
@@ -23,28 +26,15 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
     app.MapScalarApiReference();
+
+    //app.UseSwagger();
+    //app.UseSwaggerUI();
+
+    await app.ApplyMigrationsAsync();
+    await app.ApplySeedingsAsync();
 }
 
 app.UseHttpsRedirection();
-
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
 
 //app.Run();
 
@@ -54,9 +44,4 @@ await app.RunAsync();
 namespace Uni.Web.API
 {
     public partial class Program;
-}
-
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 }

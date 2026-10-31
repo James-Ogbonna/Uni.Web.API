@@ -1,5 +1,7 @@
-﻿namespace Uni.Web.API.Common;
-public interface IDateTimeProvider
+﻿namespace Uni.Web.API.Common
 {
-    public DateTime UtcNow { get; }
+    public interface IDateTimeProvider
+    {
+        public DateTime UtcNow { get; }
+    }
 }

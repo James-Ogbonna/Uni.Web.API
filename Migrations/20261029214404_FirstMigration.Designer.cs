@@ -12,7 +12,7 @@ using Uni.Web.API.Database;
 namespace Uni.Web.API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20261021182219_FirstMigration")]
+    [Migration("20261029214404_FirstMigration")]
     partial class FirstMigration
     {
         /// <inheritdoc />
@@ -37,7 +37,12 @@ namespace Uni.Web.API.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("course_id");
 
+                    b.Property<DateTime>("RegistrationDate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("registration_date");
+
                     b.Property<int>("Semester")
+                        .HasMaxLength(1)
                         .HasColumnType("integer")
                         .HasColumnName("semester");
 
@@ -57,8 +62,9 @@ namespace Uni.Web.API.Migrations
                     b.HasIndex("CourseId")
                         .HasDatabaseName("ix_course_registrations_course_id");
 
-                    b.HasIndex("StudentId")
-                        .HasDatabaseName("ix_course_registrations_student_id");
+                    b.HasIndex("StudentId", "CourseId", "Session")
+                        .IsUnique()
+                        .HasDatabaseName("ix_course_registrations_student_id_course_id_session");
 
                     b.ToTable("course_registrations", "public");
                 });
@@ -83,8 +89,8 @@ namespace Uni.Web.API.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
                         .HasColumnName("title");
 
                     b.Property<int>("Unit")
@@ -93,6 +99,10 @@ namespace Uni.Web.API.Migrations
 
                     b.HasKey("Id")
                         .HasName("pk_courses");
+
+                    b.HasIndex("Code")
+                        .IsUnique()
+                        .HasDatabaseName("ix_courses_code");
 
                     b.ToTable("courses", "public");
                 });
@@ -123,15 +133,12 @@ namespace Uni.Web.API.Migrations
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)")
+                        .HasMaxLength(10)
+                        .HasColumnType("character varying(10)")
                         .HasColumnName("status");
 
                     b.HasKey("Id")
                         .HasName("pk_departmental_courses");
-
-                    b.HasIndex("CourseId")
-                        .HasDatabaseName("ix_departmental_courses_course_id");
 
                     b.HasIndex("DepartmentId", "CourseId")
                         .IsUnique()
@@ -146,6 +153,12 @@ namespace Uni.Web.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
                         .HasColumnName("id");
+
+                    b.Property<string>("Abbr")
+                        .IsRequired()
+                        .HasMaxLength(4)
+                        .HasColumnType("character varying(4)")
+                        .HasColumnName("abbr");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -173,6 +186,12 @@ namespace Uni.Web.API.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
+                    b.Property<string>("Abbr")
+                        .IsRequired()
+                        .HasMaxLength(5)
+                        .HasColumnType("character varying(5)")
+                        .HasColumnName("abbr");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -192,6 +211,10 @@ namespace Uni.Web.API.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
+                    b.Property<int>("CurrentLevel")
+                        .HasColumnType("integer")
+                        .HasColumnName("current_level");
+
                     b.Property<DateOnly>("DateOfBirth")
                         .HasColumnType("date")
                         .HasColumnName("date_of_birth");
@@ -206,6 +229,12 @@ namespace Uni.Web.API.Migrations
                         .HasColumnType("character varying(70)")
                         .HasColumnName("email");
 
+                    b.Property<string>("EntrySession")
+                        .IsRequired()
+                        .HasMaxLength(9)
+                        .HasColumnType("character varying(9)")
+                        .HasColumnName("entry_session");
+
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -217,10 +246,6 @@ namespace Uni.Web.API.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("character varying(20)")
                         .HasColumnName("last_name");
-
-                    b.Property<int>("Level")
-                        .HasColumnType("integer")
-                        .HasColumnName("level");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
@@ -240,6 +265,10 @@ namespace Uni.Web.API.Migrations
                     b.HasIndex("DepartmentId")
                         .HasDatabaseName("ix_students_department_id");
 
+                    b.HasIndex("RegNumber")
+                        .IsUnique()
+                        .HasDatabaseName("ix_students_reg_number");
+
                     b.ToTable("students", "public");
                 });
 
@@ -258,23 +287,6 @@ namespace Uni.Web.API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_course_registrations_students_student_id");
-                });
-
-            modelBuilder.Entity("Uni.Web.API.Features.DepartmentalCourse.DepartmentalCourse", b =>
-                {
-                    b.HasOne("Uni.Web.API.Features.Courses.Course", null)
-                        .WithMany()
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_departmental_courses_courses_course_id");
-
-                    b.HasOne("Uni.Web.API.Features.Departments.Department", null)
-                        .WithMany()
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_departmental_courses_departments_department_id");
                 });
 
             modelBuilder.Entity("Uni.Web.API.Features.Departments.Department", b =>

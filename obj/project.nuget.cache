@@ -42,5 +42,15 @@
     "C:\\Users\\hp\\.nuget\\packages\\system.composition.runtime\\9.0.0\\system.composition.runtime.9.0.0.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\system.composition.typedparts\\9.0.0\\system.composition.typedparts.9.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json.",
+      "projectPath": "C:\\Users\\hp\\source\\repos\\Uni.Web.API\\Uni.Web.API\\Uni.Web.API.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\hp\\source\\repos\\Uni.Web.API\\Uni.Web.API\\Uni.Web.API.csproj",
+      "targetGraphs": []
+    }
+  ]
 }

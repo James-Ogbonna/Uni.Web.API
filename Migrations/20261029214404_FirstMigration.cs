@@ -21,7 +21,7 @@ namespace Uni.Web.API.Migrations
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
                     code = table.Column<string>(type: "character varying(7)", maxLength: 7, nullable: false),
-                    title = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    title = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     unit = table.Column<int>(type: "integer", nullable: false),
                     description = table.Column<string>(type: "text", nullable: false)
                 },
@@ -31,12 +31,30 @@ namespace Uni.Web.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "departmental_courses",
+                schema: "public",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(type: "uuid", nullable: false),
+                    department_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    course_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    level = table.Column<int>(type: "integer", nullable: false),
+                    semester = table.Column<int>(type: "integer", maxLength: 1, nullable: false),
+                    status = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("pk_departmental_courses", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "schools",
                 schema: "public",
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
-                    name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false)
+                    name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    abbr = table.Column<string>(type: "character varying(5)", maxLength: 5, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -50,6 +68,7 @@ namespace Uni.Web.API.Migrations
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
                     name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    abbr = table.Column<string>(type: "character varying(4)", maxLength: 4, nullable: false),
                     school_id = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
@@ -60,37 +79,6 @@ namespace Uni.Web.API.Migrations
                         column: x => x.school_id,
                         principalSchema: "public",
                         principalTable: "schools",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "departmental_courses",
-                schema: "public",
-                columns: table => new
-                {
-                    id = table.Column<Guid>(type: "uuid", nullable: false),
-                    department_id = table.Column<Guid>(type: "uuid", nullable: false),
-                    course_id = table.Column<Guid>(type: "uuid", nullable: false),
-                    level = table.Column<int>(type: "integer", nullable: false),
-                    semester = table.Column<int>(type: "integer", maxLength: 1, nullable: false),
-                    status = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("pk_departmental_courses", x => x.id);
-                    table.ForeignKey(
-                        name: "fk_departmental_courses_courses_course_id",
-                        column: x => x.course_id,
-                        principalSchema: "public",
-                        principalTable: "courses",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "fk_departmental_courses_departments_department_id",
-                        column: x => x.department_id,
-                        principalSchema: "public",
-                        principalTable: "departments",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -107,8 +95,9 @@ namespace Uni.Web.API.Migrations
                     date_of_birth = table.Column<DateOnly>(type: "date", nullable: false),
                     email = table.Column<string>(type: "character varying(70)", maxLength: 70, nullable: false),
                     phone_number = table.Column<string>(type: "character varying(11)", maxLength: 11, nullable: false),
-                    department_id = table.Column<Guid>(type: "uuid", nullable: false),
-                    level = table.Column<int>(type: "integer", nullable: false)
+                    entry_session = table.Column<string>(type: "character varying(9)", maxLength: 9, nullable: false),
+                    current_level = table.Column<int>(type: "integer", nullable: false),
+                    department_id = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -131,7 +120,8 @@ namespace Uni.Web.API.Migrations
                     student_id = table.Column<Guid>(type: "uuid", nullable: false),
                     course_id = table.Column<Guid>(type: "uuid", nullable: false),
                     session = table.Column<string>(type: "character varying(9)", maxLength: 9, nullable: false),
-                    semester = table.Column<int>(type: "integer", nullable: false)
+                    semester = table.Column<int>(type: "integer", maxLength: 1, nullable: false),
+                    registration_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -159,16 +149,18 @@ namespace Uni.Web.API.Migrations
                 column: "course_id");
 
             migrationBuilder.CreateIndex(
-                name: "ix_course_registrations_student_id",
+                name: "ix_course_registrations_student_id_course_id_session",
                 schema: "public",
                 table: "course_registrations",
-                column: "student_id");
+                columns: new[] { "student_id", "course_id", "session" },
+                unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "ix_departmental_courses_course_id",
+                name: "ix_courses_code",
                 schema: "public",
-                table: "departmental_courses",
-                column: "course_id");
+                table: "courses",
+                column: "code",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "ix_departmental_courses_department_id_course_id",
@@ -188,6 +180,13 @@ namespace Uni.Web.API.Migrations
                 schema: "public",
                 table: "students",
                 column: "department_id");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_students_reg_number",
+                schema: "public",
+                table: "students",
+                column: "reg_number",
+                unique: true);
         }
 
         /// <inheritdoc />
@@ -202,11 +201,11 @@ namespace Uni.Web.API.Migrations
                 schema: "public");
 
             migrationBuilder.DropTable(
-                name: "students",
+                name: "courses",
                 schema: "public");
 
             migrationBuilder.DropTable(
-                name: "courses",
+                name: "students",
                 schema: "public");
 
             migrationBuilder.DropTable(

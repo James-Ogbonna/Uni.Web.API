@@ -8,7 +8,7 @@ public sealed class Student
     public DateOnly DateOfBirth { get; set; }
     public string Email { get; set; }
     public string PhoneNumber { get; set; }
+    public string EntrySession { get; set; }
+    public int CurrentLevel { get; set; }
     public Guid DepartmentId { get; set; }
-    public int Level { get; set; }
-   
 }

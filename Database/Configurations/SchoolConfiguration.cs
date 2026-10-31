@@ -4,12 +4,13 @@ using Uni.Web.API.Features.Schools;
 
 namespace Uni.Web.API.Database.Configurations
 {
-    public class SchoolConfiguration : IEntityTypeConfiguration<School>
+    public sealed class SchoolConfiguration : IEntityTypeConfiguration<School>
     {
         public void Configure(EntityTypeBuilder<School> builder)
         {
-            builder.HasKey(s => s.Id); //Primary key
-            builder.Property(s => s.Name).IsRequired().HasMaxLength(100); //E.g. School of Information and Communication Technology
+            builder.HasKey(s => s.Id);
+            builder.Property(s => s.Name).IsRequired().HasMaxLength(100);
+            builder.Property(s => s.Abbr).HasMaxLength(5);
 
         }
     }

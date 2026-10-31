@@ -1,7 +1,10 @@
-﻿namespace Uni.Web.API.Features.Schools;
+﻿using Uni.Web.API.Features.Departments;
+
+namespace Uni.Web.API.Features.Schools;
+
 public sealed class School
 {
     public Guid Id { get; set; }
     public string Name { get; set; }
-    //public string Abbr { get; set; }
+    public string Abbr { get; set; }
 }

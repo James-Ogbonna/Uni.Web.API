@@ -1,4 +1,6 @@
-﻿namespace Uni.Web.API.Features.CourseRegistrations;
+﻿using Uni.Web.API.Common;
+
+namespace Uni.Web.API.Features.CourseRegistrations;
 public sealed class CourseRegistration
 {
     public Guid Id { get; set; }
@@ -6,5 +8,6 @@ public sealed class CourseRegistration
     public Guid CourseId { get; set; }
     public string Session { get; set; } //2024-2025
     public Semester Semester { get; set; } 
-    //public DateTime RegistrationDate { get; set; }
+    public DateTime RegistrationDate { get; set; }
+
 }
