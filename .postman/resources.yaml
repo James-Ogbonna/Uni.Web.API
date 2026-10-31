@@ -1,7 +1,0 @@
-# Use this workspace to collaborate
-workspace:
-  id: c20c18a0-1a0c-4a23-af15-a1051dbca595
-
-localResources:
-  specs:
-    - ../obj/Debug/net10.0/EndpointInfo/Uni.Web.API.json
