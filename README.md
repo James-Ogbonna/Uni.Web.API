@@ -5,7 +5,7 @@ The following technologies, tools, principles, and architectural approaches were
 4. Entity Framework Core
 5. JSON (JavaScript Object Notation)
 6. Object-Oriented Programming (OOP)
-7. SOLID Principles
+7. SOLID Principle
 8. Command Query Responsibility Segregation (CQRS)
 9. Data Transfer Objects (DTOs)
 10. Vertical Slice Architecture
@@ -13,7 +13,7 @@ The following technologies, tools, principles, and architectural approaches were
 12. OpenAPI
 13. Minimal APIs
 14. FluentValidation
-15. PostgreSQL
+15. PostgreSQL Database
 16. Language Integrated Query (LINQ)
 17. Automated Database Migrations
 18. Automated Data Seeding
